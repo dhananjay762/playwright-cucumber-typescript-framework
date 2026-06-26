@@ -27,7 +27,7 @@ Then('I should be navigated to the Inventory page', async function () {
 
 Then('Application should throw validation message for incorrect credentials', async function () {
     await expect(pageManager.getLoginPage().errorMessage)
-                    .toHaveText("Epic sadface: Username and password do not match any user in this service123", {timeout: 2000});
+                    .toHaveText("Epic sadface: Username and password do not match any user in this service", {timeout: 2000});
 });
 
 When('I click on logout button', function () {
