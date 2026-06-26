@@ -5,7 +5,7 @@
   "scripts": {
     "test": "cucumber-js --config cucumber.js",
     "test:report": "cucumber-js --config cucumber.js || true & node generate-report.js",
-    "test:chromium:headless": "BROWSER=chromium HEADLESS=true cucumber-js --config cucumber.js || true & node generate-report.js",
+    "test:chromium:headless": "cross-env BROWSER=chromium HEADLESS=true cucumber-js --config cucumber.js || true & node generate-report.js",
     "test:firefox": "cross-env BROWSER=firefox cucumber-js --config cucumber.js || true & node generate-report.js",
     "test:firefox:headless": "cross-env BROWSER=firefox HEADLESS=true cucumber-js --config cucumber.js || true & node generate-report.js",
     "test:webkit": "cross-env BROWSER=webkit cucumber-js --config cucumber.js || true & node generate-report.js",
