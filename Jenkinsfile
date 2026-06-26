@@ -36,7 +36,7 @@ pipeline {
             }
         }
 
-        stage('Create Report Directories') {        // ← Fix 1: added missing stage
+        stage('Create Report Directories') {        
             steps {
                 bat '''
                     if not exist reports\\screenshots mkdir reports\\screenshots
@@ -47,7 +47,7 @@ pipeline {
 
         stage('Run Automation Tests') {
             steps {
-                catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {     // ← Fix 2
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {     
                     echo "Running tests on ${params.BROWSER} browser with ${params.PARALLEL} workers..."
                     bat """
                         set BROWSER=${params.BROWSER}
@@ -60,6 +60,9 @@ pipeline {
         }
 
         stage('Generate Report') {
+            when {
+                expression { return true }    // ← always run this stage
+            }
             steps {
                 echo "Generating HTML report..."
                 bat 'node jenkins-run-tests.js --report-only'
@@ -67,9 +70,12 @@ pipeline {
         }
 
         stage('Publish Report') {
+            when {
+                expression { return true }    // ← always run this stage
+            }
             steps {
                 publishHTML(target: [
-                    allowMissing         : true,             // ← Fix 3
+                    allowMissing         : true,             
                     alwaysLinkToLastBuild: true,
                     keepAll              : true,
                     reportDir            : 'reports/html-report',
