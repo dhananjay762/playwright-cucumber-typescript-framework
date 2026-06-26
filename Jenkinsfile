@@ -27,10 +27,12 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Install Dependencies & Browsers') {
             steps {
                 echo "Installing npm dependencies..."
                 bat 'npm ci'
+                echo "Installing Playwright browsers..."
+                bat "npx playwright install ${params.BROWSER}"
             }
         }
 
