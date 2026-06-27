@@ -1,10 +1,15 @@
 import {LoginPage} from '../pages/LoginPage';
 import {InventoryPage} from '../pages/InventoryPage';
+import { CartPage } from '../pages/CartPage';
+import { CheckoutPage } from '../pages/CheckoutPage';
+
 
 export class PageManager {
 
     private loginPage!:LoginPage;
     private inventoryPage!:InventoryPage;
+    private cartPage!:CartPage;
+    private checkoutPage!:CheckoutPage;
 
     public getLoginPage():LoginPage {
         if(!this.loginPage){
@@ -20,4 +25,17 @@ export class PageManager {
         return this.inventoryPage;
     }
 
+    public getCartPage():CartPage {
+        if(!this.cartPage){
+            this.cartPage = new CartPage();
+        }
+        return this.cartPage;
+    }
+
+    public getCheckoutPage():CheckoutPage {
+        if(!this.checkoutPage){
+            this.checkoutPage = new CheckoutPage();
+        }
+        return this.checkoutPage;
+    }
 }

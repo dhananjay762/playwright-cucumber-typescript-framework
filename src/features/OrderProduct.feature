@@ -20,6 +20,6 @@ Feature: Order Products
 		Then I should be able to logged out from the application
 
     Examples: 
-      | UserName    | Password    | ProductName  						| FirstName | LastName  |  ZipCode  |
-      |standard_user| secret_sauce| Sauce Labs Backpack		  |   John    |   Doe     |  64901    |
+      | UserName    | Password    | ProductName  			| FirstName | LastName  |  ZipCode  |
+      |standard_user| secret_sauce| Sauce Labs Backpack	    |   John    |   Doe     |  64901    |
       |standard_user| secret_sauce| Sauce Labs Bolt T-Shirt |   Will    |   Smith   |  76109    |

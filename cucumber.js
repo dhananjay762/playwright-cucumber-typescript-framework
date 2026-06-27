@@ -3,7 +3,7 @@ console.log("✅ cucumber.js config loaded");
 module.exports = {
   default: {
     timeout: 60000,
-    paths: ['src/features/**/Login.feature'],
+    paths: ['src/features/**/*.feature'],
     require: [
       'src/step-definitions/**/*.ts',
       'src/support/**/*.ts'

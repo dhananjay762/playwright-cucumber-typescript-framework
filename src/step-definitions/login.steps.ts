@@ -22,7 +22,7 @@ When('I click on Login button', async function () {
 
 Then('I should be navigated to the Inventory page', async function () {
     await expect(pageFixture.page).toHaveURL("https://www.saucedemo.com/inventory.html");
-    await expect(pageManager.getInventoryPage().pageHeader).toHaveText("Products");
+    await expect(pageManager.getInventoryPage().secondaryHeader).toHaveText("Products");
 });
 
 Then('Application should throw validation message for incorrect credentials', async function () {
@@ -30,10 +30,13 @@ Then('Application should throw validation message for incorrect credentials', as
                     .toHaveText("Epic sadface: Username and password do not match any user in this service", {timeout: 2000});
 });
 
-When('I click on logout button', function () {
-    
+When('I click on logout button', async () => {
+    await pageManager.getCheckoutPage().menuBurger.click();
+    await pageManager.getCheckoutPage().logoutSideBtn.click();
 });
 
-Then('I should be able to logged out from the application', function () {
-    
+Then('I should be able to logged out from the application', async () => {
+    await expect(pageFixture.page).toHaveTitle("Swag Labs");
+    await expect(pageManager.getLoginPage().pageHeader).toHaveText("Swag Labs");
+    await expect(pageManager.getLoginPage().loginDiv).toBeVisible();
 });
